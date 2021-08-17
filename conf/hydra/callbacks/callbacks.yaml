@@ -1,0 +1,7 @@
+# @package _global_
+hydra:
+  callbacks:
+    my_callback:
+      _target_: my_app.MyCallback
+      bucket: my_s3_bucket
+      file_path: ./test.pt

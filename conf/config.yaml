@@ -1,0 +1,6 @@
+defaults:
+ - /hydra/callbacks:
+    - my_callback
+
+foo: bar
+
