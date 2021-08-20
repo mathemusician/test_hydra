@@ -5,6 +5,7 @@ from hydra import initialize, initialize_config_module, initialize_config_dir, c
 from hydra.experimental.callback import Callback
 from omegaconf import DictConfig, OmegaConf
 import hydra
+from typing import Any
 
 
 file_dir = getpath()
@@ -32,12 +33,15 @@ def my_app_v3():
 
 
 class MyCallback(Callback):
-   def __init__(self, bucket: str, file_path: str) -> None:
+    def __init__(self, bucket: str, file_path: str) -> None:
         self.bucket = bucket
         self.file_path = file_path
-
-   def on_job_end(self, config: DictConfig, **kwargs: any) -> None:
-        print(f"Job ended,uploading...")
+    
+    def on_job_start(self, config:DictConfig, **kwargs: Any) -> None:
+        print(f"Job begin, uploading...")
+        
+    def on_job_end(self, config: DictConfig, **kwargs: Any) -> None:
+        print(f"Job ended, uploading...")
         # uploading...
 
 
